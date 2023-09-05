@@ -1,1 +1,1 @@
-This directory contains if/else conditional codes
+0x01. Python - if/else, loops, functions
