@@ -20,7 +20,6 @@ listint_t *reverse_listint(listint_t **head)
 	*head = prev;
 	return (*head);
 }
-#include "lists.h"
 
 /**
  * is_palindrome - Checks if a singly linked list is a palindrome.
