@@ -28,13 +28,16 @@ listint_t *reverse_listint(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
+	listint_t *prev = NULL;
+	listint_t *temp = NULL;
+	listint_t *slow, *fast;
+
 	if (head == NULL || *head == NULL)
 		return (1);
 
-	listint_t *slow = *head;
-	listint_t *fast = *head;
-	listint_t *prev = NULL;
-	listint_t *temp = NULL;
+	slow = *head;
+	fast = *head;
+
 
 	while (fast != NULL && fast->next != NULL)
 	{
