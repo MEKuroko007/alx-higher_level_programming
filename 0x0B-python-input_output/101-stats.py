@@ -12,13 +12,13 @@ def print_status():
     status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
                     "403": 0, "404": 0, "405": 0, "500": 0}
 
-    for l in sys.stdin:
-        line = l.split()
+    for line in sys.stdin:
+        lines = line.split()
         try:
-            size += int(line[-1])
-            code = line[-2]
+            size += int(lines[-1])
+            code = lines[-2]
             status_codes[code] += 1
-        except:
+        except ValueError:
             continue
         if counter == 9:
             print("File size: {}".format(size))
