@@ -81,14 +81,16 @@ class Rectangle(Base):
 
     @staticmethod
     def validate(attribute, value):
-        if not isinstance(value, int):
-            raise TypeError("{} must be an integer".format(attribute))
+        if attribute in ("width", "height"):
+            if not isinstance(value, int):
+                raise TypeError("{} must be an integer".format(attribute))
         if attribute in ("width", "height"):
             if value <= 0:
                 raise ValueError("{} must be > 0".format(attribute))
         if attribute in ("x", "y"):
             if value < 0:
                 raise ValueError("{} must be >= 0".format(attribute))
+
 
             
     def area(self):
