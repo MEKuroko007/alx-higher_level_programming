@@ -70,7 +70,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Set/get the y coordinate of the Rectangle."""
+        """getter/y"""
         return self.__y
 
     @y.setter
@@ -88,7 +88,7 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        """Print the Rectangle using the `#` character."""
+        """Print the Rectangle using the # """
         if self.width == 0 or self.height == 0:
             print("")
             return
