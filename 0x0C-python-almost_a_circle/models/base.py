@@ -2,17 +2,21 @@
 """
     class Base
 """
+
 import json
 import csv
 
+
 class Base:
+
+    """ mother :)
+    This class will manage the id attribute for all the classes
+    Args:
+    @id: The id for a specific instance.
     """
-        This class will manage the id attribute for all the classes.
-        Arguments:
-            @id: The id for a specific instance.
-    """
-    
+
     __nb_objects = 0
+
     def __init__(self, id=None):
         if id is not None:
             self.id = id
@@ -27,7 +31,7 @@ class Base:
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
         return json.dumps(list_dictionaries)
-    
+
     @classmethod
     def save_to_file(cls, list_objs):
         """Write the JSON serialization of a list of objects to a file"""
@@ -39,7 +43,7 @@ class Base:
             else:
                 list_dicts = [o.to_dictionary() for o in list_objs]
                 f.write(Base.to_json_string(list_dicts))
-    
+
     @staticmethod
     def from_json_string(json_string):
         """Return the deserialization of a JSON string"""
@@ -47,7 +51,7 @@ class Base:
         if json_string is None or json_string == "[]":
             return []
         return json.loads(json_string)
-    
+
     @classmethod
     def create(cls, **dictionary):
         """Return a class instantied from a dictionary of attributes"""
@@ -59,7 +63,7 @@ class Base:
                 new = cls(1)
             new.update(**dictionary)
             return new
-        
+
     @classmethod
     def load_from_file(cls):
         """Return a list of classes instantiated from a file of JSON strings"""
@@ -71,7 +75,7 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
-        
+
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """Write the CSV serialization of a list of objects to a file"""
@@ -88,6 +92,7 @@ class Base:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 for obj in list_objs:
                     writer.writerow(obj.to_dictionary())
+
     @classmethod
     def load_from_file_csv(cls):
         """Return a list of classes instantiated from a CSV file"""
@@ -105,8 +110,9 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
+
     @staticmethod
     def draw(list_rectangles, list_squares):
-        
+
         """ Tomorrow """
         pass
