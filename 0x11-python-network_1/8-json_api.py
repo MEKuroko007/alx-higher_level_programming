@@ -1,21 +1,19 @@
 #!/usr/bin/python3
+"""Sends a request to a given URL and displays the response body.
+Usage: ./3-error_code.py <URL>
+  - Handles HTTP errors.
 """
-Python script that takes in a letter and sends a POST request to
-http://0.0.0.0:5000/search_user with the letter as a parameter
-"""
-import requests
-from sys import argv
+import sys
+import urllib.error
+import urllib.request
 
-if __name__ == '__main__':
-    q = argv[1] if len(argv) == 2 else ""
-    url = 'http://0.0.0.0:5000/search_user'
-    req = requests.post(url, data={'q': q})
+
+if __name__ == "__main__":
+    url = sys.argv[1]
+
+    request = urllib.request.Request(url)
     try:
-        req_dict = req.json()
-        id, name = req_dict.get('id'), req_dict.get('name')
-        if len(req_dict) == 0 or not id or not name:
-            print("No result")
-        else:
-            print("[{}] {}".format(req_dict.get('id'), req_dict.get('name')))
-    except:
-        print("Not a valid JSON")
+        with urllib.request.urlopen(request) as response:
+            print(response.read().decode("ascii"))
+    except urllib.error.HTTPError as e:
+        print("Error code: {}".format(e.code))
