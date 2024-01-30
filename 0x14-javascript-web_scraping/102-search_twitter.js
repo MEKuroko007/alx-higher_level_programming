@@ -15,8 +15,8 @@ let promise = new Promise(function (resolve, reject) {
       grant_type: 'client_credentials'
     }
   };
-  request.post(options, function (err, res, body) {
-    if (!err) {
+  request.post(options, function (error, response, body) {
+    if (!error) {
       resolve(JSON.parse(body).access_token);
     }
   });
@@ -24,7 +24,7 @@ let promise = new Promise(function (resolve, reject) {
 
 promise.then(
   result => search(result),
-  err => console.log(err)
+  error => console.log(error)
 );
 
 function search (bearer) {
@@ -38,8 +38,8 @@ function search (bearer) {
       count: '5'
     }
   };
-  request.get(options, function (err, res, body) {
-    if (!err) {
+  request.get(options, function (error, response, body) {
+    if (!error) {
       const tweets = JSON.parse(body).statuses;
       tweets.forEach((t) => console.log(`[${t.id}] ${t.text} by ${t.user.name}`));
     }
